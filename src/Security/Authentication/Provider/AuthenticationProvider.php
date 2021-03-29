@@ -198,15 +198,19 @@ class AuthenticationProvider extends DaoAuthenticationProvider
      */
     private function onBadCredentials(User $user, AuthenticationException $exception): AuthenticationException
     {
-        ++$user->loginAttempts;
+        
+        // disable lock after multiple login attempts
+        return $exception;
+        //++$user->loginAttempts;
 
+        /*
         if ($user->loginAttempts < 3) {
             $user->save();
 
             return $exception;
         }
 
-        $lockedSeconds = ($user->loginAttempts - 2) * 60;
+        $lockedSeconds = 0;
 
         $user->locked = time() + $lockedSeconds;
         $user->save();
@@ -221,6 +225,7 @@ class AuthenticationProvider extends DaoAuthenticationProvider
         $exception->setUser($user);
 
         return $exception;
+        */
     }
 
     private function triggerCheckCredentialsHook(User $user, UsernamePasswordToken $token): bool
