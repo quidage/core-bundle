@@ -1,5 +1,5 @@
 {
-    "name": "contao/core-bundle",
+    "name": "quidage/core-bundle",
     "type": "symfony-bundle",
     "description": "Provides the Contao core functionality",
     "homepage": "https://contao.org",
